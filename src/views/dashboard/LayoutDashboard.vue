@@ -1,32 +1,30 @@
 <template>
   <div class="sidebar-admin pl-5 w-60 z-10 h-full py-4 fixed">
-    <div
-      class="left-5 backdrop-filter shadow-md bg-white bg-opacity-50 backdrop-blur-sm h-full rounded-2xl pt-4"
-    >
+    <div class="left-5 shadow-md bg-white h-full rounded-2xl pt-4 overflow-auto">
       <h3 class="p-4 text-lg font-bold">🎉 GPT Playground</h3>
       <hr class="my-2" />
       <div v-for="(parent, i) in sidebar">
         <div class="text-lg font-bold px-4 pb-1 pt-4" v-if="parent.header">{{ parent.header }}</div>
         <div
-          class="px-4 py-2 hover:bg-white hover:shadow-inner block transition-all"
+          class="hover:bg-slate-200 hover:shadow-inner block transition-all"
           v-for="(item, i) in parent.children"
         >
           <router-link
             v-if="item.path"
             :to="item.path"
             :key="i"
-            class="cursor-pointer block w-full"
+            class="sidebar-route cursor-pointer block w-full h-full px-4 py-2"
           >
             {{ item.title }}
           </router-link>
-          <div v-else>
+          <div v-else class="px-4 py-2">
             {{ item.title }}
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="py-4 px-12 panel-container min-h-screen">
+  <div class="py-4 px-12 pb-24 panel-container min-h-screen">
     <router-view></router-view>
 
     <div
@@ -75,27 +73,39 @@ const sidebar = [
         path: '/dashboard/penilaian-essay'
       },
       {
-        title: 'Chat (Coming Soon)'
+        title: 'Chat (Coming Soon)',
+        path: '/dashboard/chat'
       }
     ]
   },
   {
     header: 'Advanced',
-    children: [{ title: 'Coming Soon' }]
+    children: [
+      {
+        title: 'Coming Soon',
+        path: ''
+      }
+    ]
+  },
+  {
+    header: 'Lain lain',
+    children: [
+      {
+        title: 'Login Page',
+        path: '/login'
+      }
+    ]
   }
 ]
 </script>
 
 <style scoped>
-li {
-  padding: 0.25rem;
-}
-a:hover {
-  color: blue;
-}
-
 .panel-container {
   background: linear-gradient(45deg, #98d9ff, #fdff754a);
+}
+
+.sidebar-route.router-link-exact-active {
+  @apply bg-sky-100;
 }
 
 .sidebar-admin {

@@ -1,13 +1,19 @@
 import { ref, type ComputedRef, type Ref } from 'vue'
 
-export const useStream = ({ payload }: { payload?: ComputedRef<Record<any, any>> | Ref }) => {
+export const useStream = ({
+  payload,
+  endpoint = '/gpt-quote'
+}: {
+  payload?: ComputedRef<Record<any, any>> | Ref
+  endpoint?: string
+}) => {
   const data = ref<Array<String>>([])
   const isLoading = ref(false)
   const execute = async () => {
     data.value = []
     isLoading.value = true
     // Query your endpoint
-    const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT}/gpt-quote`, {
+    const res = await fetch(`${import.meta.env.VITE_API_ENDPOINT}${endpoint}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -33,8 +39,8 @@ export const useStream = ({ payload }: { payload?: ComputedRef<Record<any, any>>
           } catch {
             res = { text: '' }
           }
-          //   console.log(res?.choices?.[0]?.text)
-          data.value.push(res?.choices?.[0]?.text ?? '')
+          console.log(res?.choices?.[0]?.delta?.content)
+          data.value.push(res?.choices?.[0]?.text ?? res?.choices?.[0]?.delta?.content ?? '')
 
           if (res.error) {
             console.error('Error while generating content: ' + res?.message)
