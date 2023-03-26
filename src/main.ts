@@ -16,6 +16,16 @@ app.component('v-radio', VRadio)
 import VWave from 'v-wave'
 app.use(VWave, { duration: 1 })
 
+import VueGtag, { trackRouter } from 'vue-gtag-next'
+app.use(VueGtag, {
+  property: {
+    id: import.meta.env.VITE_GA_ID
+  }
+})
+trackRouter(router, {
+  useScreenview: true
+})
+
 import { createPinia } from 'pinia'
 app.use(createPinia())
 
