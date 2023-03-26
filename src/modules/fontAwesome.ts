@@ -27,7 +27,8 @@ import {
   faEdit,
   faTrash,
   faThumbsUp,
-  faThumbsDown
+  faThumbsDown,
+  faPaperPlane
 } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
@@ -57,7 +58,8 @@ library.add(
   faEdit,
   faTrash,
   faThumbsUp,
-  faThumbsDown
+  faThumbsDown,
+  faPaperPlane
 )
 
 export default FontAwesomeIcon

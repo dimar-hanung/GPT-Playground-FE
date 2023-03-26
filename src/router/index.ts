@@ -14,6 +14,11 @@ const router = createRouter({
       component: () => import('../views/dashboard/LayoutDashboard.vue'),
       children: [
         {
+          path: '',
+          name: 'Dashboard',
+          component: () => import('../views/dashboard/Dashboard.vue')
+        },
+        {
           path: 'quote',
           name: 'Quote',
           component: () => import('../views/dashboard/quote/Quote.vue')
@@ -33,8 +38,17 @@ const router = createRouter({
           path: 'penilaian-essay',
           name: 'PenilaianEssay',
           component: () => import('../views/dashboard/penilaian-essay/PenilaianEssay.vue')
+        },
+        {
+          path: 'chat',
+          name: 'Chat',
+          component: () => import('../views/dashboard/chat/Chat.vue')
         }
       ]
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/dashboard/quote'
     }
   ]
 })

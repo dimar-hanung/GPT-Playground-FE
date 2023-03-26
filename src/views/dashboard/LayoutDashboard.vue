@@ -75,13 +75,19 @@ const sidebar = [
         path: '/dashboard/penilaian-essay'
       },
       {
-        title: 'Chat (Coming Soon)'
+        title: 'Chat (Coming Soon)',
+        path: '/dashboard/chat'
       }
     ]
   },
   {
     header: 'Advanced',
-    children: [{ title: 'Coming Soon' }]
+    children: [
+      {
+        title: 'Coming Soon',
+        path: ''
+      }
+    ]
   }
 ]
 </script>
